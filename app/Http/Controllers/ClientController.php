@@ -17,6 +17,6 @@ class ClientController extends Controller
         $client->gender = $request->gender;
         $client->createdby = auth()->user()->id;
         $client->save();
-        return redirect('/dashboard')->with('success', 'Client has been successfully added');
+        return view('dashboard'. ['clients' => client::all()]);
     }
 }

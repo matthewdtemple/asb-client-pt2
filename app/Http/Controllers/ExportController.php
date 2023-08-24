@@ -12,6 +12,6 @@ class ExportController extends Controller
 
     public function exportCSVFile() 
     {
-        return (new ExportClients)->collection('users.csv', \Maatwebsite\Excel\Excel::CSV);
+        return Excel::download(new ExportClients, 'users.csv', \Maatwebsite\Excel\Excel::CSV);
     }    
 }

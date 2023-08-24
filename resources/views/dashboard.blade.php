@@ -11,11 +11,7 @@
                 <div class="p-6 text-gray-900">
                    <h1>List of your clients</h1>
                 </div>
-                <ul>
-                    <li>
-                    </li>
-
-                </ul>
+          
             </div>
         
         </div>
