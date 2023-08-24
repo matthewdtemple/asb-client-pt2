@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\client;
+use Illuminate\Support\Facades\Log;
+
 
 class ClientController extends Controller
 {
@@ -17,6 +19,9 @@ class ClientController extends Controller
         $client->gender = $request->gender;
         $client->createdby = auth()->user()->id;
         $client->save();
-        return view('dashboard'. ['clients' => client::all()]);
+
+        $clients = ['clients' => client::where('createdby', auth()->user()->id)->get()];
+
+        return view('dashboard', $clients);
     }
 }

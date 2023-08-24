@@ -11,7 +11,15 @@
                 <div class="p-6 text-gray-900">
                    <h1>List of your clients</h1>
                 </div>
-          
+                <ul>
+                @foreach ($clients as $client)
+                    <p>
+                        {{$client->firstname}} {{$client->lastname}} {{$client->email}} 
+                        <button class="outline outline-offset-2 outline-1 ..."> - Button here </button>
+                    </p>
+                   <br>
+                @endforeach
+                </ul>
             </div>
         
         </div>
