@@ -18,6 +18,11 @@
                 @foreach ($clients as $client)
                     <p>
                         {{$client->firstname}} {{$client->lastname}} {{$client->email}} 
+
+                        <?php if (DB::table('clients')->where('email', $client->email)->exists()): ?>
+                            <p>Create User</p>
+                        <?php endif; ?>
+
                         <form method="post" action="{{ route('deleteclient', $client->id) }}">
                         
                         {{ csrf_field() }}
