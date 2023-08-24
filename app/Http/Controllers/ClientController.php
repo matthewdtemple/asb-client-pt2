@@ -24,4 +24,14 @@ class ClientController extends Controller
 
         return view('dashboard', $clients);
     }
+
+    public function deleteClient(Request $request)
+    {
+        $client = client::find($request->id);
+        $client->delete();
+
+        $clients = ['clients' => client::where('createdby', auth()->user()->id)->get()];
+
+        return view('dashboard', $clients);
+    }
 }

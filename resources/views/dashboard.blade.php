@@ -9,20 +9,28 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                   <h1>List of your clients</h1>
+                   <h1 style="font-size:20px;"> <strong>List of your clients</h1>
                 </div>
+                <a href="createclient" style="color:blue"> <strong>Create Client</a>
+                <br>
+                <br>
                 <ul>
                 @foreach ($clients as $client)
                     <p>
                         {{$client->firstname}} {{$client->lastname}} {{$client->email}} 
-                        <button class="outline outline-offset-2 outline-1 ..."> - Button here </button>
+                        <form method="post" action="{{ route('deleteclient', $client->id) }}">
+                        
+                        {{ csrf_field() }}
+
+                        <button type="submit" style="color:red;"> DELETE </button>
+                        </form>
                     </p>
                    <br>
                 @endforeach
                 </ul>
             </div>
-        
+            <a style="color:green;" href="/exportclients"> <strong>Export</a>
         </div>
-        <a href="/exportclients">Export</a>
+        
     </div>
 </x-app-layout>

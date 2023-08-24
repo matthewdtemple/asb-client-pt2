@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 use App\Models\client;
 
@@ -39,6 +40,6 @@ Route::post('/createclient', "App\Http\Controllers\ClientController@saveClient")
 
 Route::get('/exportclients', "App\Http\Controllers\ExportController@exportCSVFile");
   
-
+Route::post('/deleteclient{id}', [ClientController::class, 'deleteClient'])->name('deleteclient');
 
 require __DIR__.'/auth.php';
