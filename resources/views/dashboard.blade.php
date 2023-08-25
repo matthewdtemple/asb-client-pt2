@@ -19,7 +19,7 @@
                     <p>
                         {{$client->firstname}} {{$client->lastname}} {{$client->email}} 
 
-                        <form method="post" action="{{ route('registeruser', $client) }}">
+                        <form method="post" action="{{ route('registeruser') }}">
                         {{ csrf_field() }}
                         <button type="submit" > Create User </button>
                         </form>
