@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('gender');
             $table->integer('createdby');
-            $table->boolean('isUser')->default(false);
+            $table->integer('userid')->nullable();
+
         });
     }
 

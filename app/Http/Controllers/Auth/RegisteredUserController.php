@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
+use App\Models\client;
+use Illuminate\Support\Facades\Session;
+
 
 class RegisteredUserController extends Controller
 {
@@ -53,18 +56,26 @@ class RegisteredUserController extends Controller
     public function storeFromClient(Request $request): RedirectResponse
     {
 
-        $data = $request->all();
-        Log::info($data);
-
+        foreach(User::all() as $user){
+            if($user->email == $request->email){
+                Session::flash('alert', 'Client already has a User account.');
+                return redirect(RouteServiceProvider::HOME);
+            }
+        }
+        
         $user = User::create([
-            'name' => $data->firstname,
-            'email' => $data->email,
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => Hash::make("password"),
         ]);
 
-        event(new Registered($user));
+        
+        $foundclient = client::find($request->id);
+        $foundclient->userid = $user->id;
+        $foundclient->save();
 
-        Auth::login($user);
+
+        event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOME);
     }

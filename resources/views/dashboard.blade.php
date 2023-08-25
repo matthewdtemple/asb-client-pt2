@@ -14,14 +14,25 @@
                 <a href="createclient" style="color:blue"> <strong>Create Client</a>
                 <br>
                 <br>
+                @if(session('alert'))
+            <div class="alert alert-success" style="color:red;">
+                {{ session('alert') }}
+            </div>
+        @endif
                 <ul>
                 @foreach ($clients as $client)
                     <p>
                         {{$client->firstname}} {{$client->lastname}} {{$client->email}} 
 
-                        <form method="post" action="{{ route('registeruser') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" > Create User </button>
+                        <form method="POST" action="{{ route('registerclient') }}">
+                        @csrf
+                        <input type="hidden" name="name" value="{{$client->firstname}}" />
+                        <input type="hidden" name="email" value="{{$client->email}}" />
+                        <input type="hidden" name="password" value="password" />
+                        <input type="hidden" name="password_confirmation" value="password" />
+                        <input type="hidden" name="id" value="{{$client->id}}" />
+
+                        <button type="submit" > Assign User </button>
                         </form>
 
                         <form method="post" action="{{ route('deleteclient', $client->id) }}">

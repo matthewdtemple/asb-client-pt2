@@ -16,7 +16,7 @@ class ExportController extends Controller
         $clientsFound = new ExportClients;
 
         foreach($clientsFound as $client){
-        $flagged = $client->isUser ? "Yes" : "No";
+        $flagged = $client->userid ? "Yes" : "No";
         }
         
 
