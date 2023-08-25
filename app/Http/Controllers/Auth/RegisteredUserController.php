@@ -48,4 +48,20 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function storeFromClient(Request $request): RedirectResponse
+    {
+
+        $user = User::create([
+            'name' => $request->firstname,
+            'email' => $request->email,
+            'password' => Hash::make("password"),
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
+    }
 }

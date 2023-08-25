@@ -19,14 +19,13 @@
                     <p>
                         {{$client->firstname}} {{$client->lastname}} {{$client->email}} 
 
-                        <?php if (DB::table('clients')->where('email', $client->email)->exists()): ?>
-                            <p>Create User</p>
-                        <?php endif; ?>
+                        <form method="post" action="{{ route('registeruser', $client) }}">
+                        {{ csrf_field() }}
+                        <button type="submit" > Create User </button>
+                        </form>
 
                         <form method="post" action="{{ route('deleteclient', $client->id) }}">
-                        
                         {{ csrf_field() }}
-
                         <button type="submit" style="color:red;"> DELETE </button>
                         </form>
                     </p>

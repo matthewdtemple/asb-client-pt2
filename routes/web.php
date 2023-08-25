@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\client;
 
@@ -41,5 +43,10 @@ Route::post('/createclient', "App\Http\Controllers\ClientController@saveClient")
 Route::get('/exportclients', "App\Http\Controllers\ExportController@exportCSVFile");
   
 Route::post('/deleteclient{id}', [ClientController::class, 'deleteClient'])->name('deleteclient');
+
+Route::post('/registeruser{client}', [RegisteredUserController::class, 'storeFromClient'])->name('registeruser');
+
+// Route::post('/registeruser', "App\Http\Controllers\Auth\RegisteredUserController@storeFromClient");
+
 
 require __DIR__.'/auth.php';
