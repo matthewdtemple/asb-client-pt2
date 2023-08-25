@@ -44,7 +44,7 @@ Route::get('/exportclients', "App\Http\Controllers\ExportController@exportCSVFil
   
 Route::post('/deleteclient{id}', [ClientController::class, 'deleteClient'])->name('deleteclient');
 
-Route::post('/registeruser{client}', [RegisteredUserController::class, 'storeFromClient'])->name('registeruser');
+Route::post('/registeruser', [RegisteredUserController::class, 'storeFromClient'])->name('registeruser');
 
 // Route::post('/registeruser', "App\Http\Controllers\Auth\RegisteredUserController@storeFromClient");
 
